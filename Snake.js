@@ -107,4 +107,4 @@ function update() {
 let id = setInterval(()=>{
     draw();
     update();
-},100);
+},200);
