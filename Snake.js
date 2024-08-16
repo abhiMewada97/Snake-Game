@@ -11,8 +11,8 @@ let foodCell = generateRandomCell();
 // Function to generate a random position for the food
 function generateRandomCell() {
     return [
-        Math.round((Math.random()*(750))/cell)*cell,
-        Math.round((Math.random()*(1450))/cell)*cell
+        Math.round((Math.random()*(450))/cell)*cell,
+        Math.round((Math.random()*(1150))/cell)*cell
       ]
 }
 
@@ -44,7 +44,7 @@ function draw() {
         ctx.fillText(' Game Over ', 100, 100);
         return;
     }
-    ctx.clearRect(0,0,1500,800);
+    ctx.clearRect(0,0,1200,500);
 
     // Draw the snake
     for(let i of snakeCells) {
@@ -77,13 +77,13 @@ function update() {
     }
     else if(direction==='down') {
         headY = headY+cell;
-        if(headY==800) {
+        if(headY==500) {
             gameOver=true;
         }
     }
     else if(direction==='right') {
         headX = headX+cell;
-        if(headX==1500) {
+        if(headX==1200) {
             gameOver=true;
         }
     }
