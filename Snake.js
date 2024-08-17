@@ -1,18 +1,23 @@
 let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
-    // ctx.fillStyle = 'green';
-let snakeCells = [[0,0]];
-let cell = 50;
-let score = 0;
-let direction = 'right';
-let gameOver = false;
-let foodCell = generateRandomCell();
+let snakeCells, cell, score, direction, gameOver, foodCell, id;
+
+cell = 50;
+
+// Function to initialize the game state
+function initGame() {
+    snakeCells = [[0, 0]];
+    score = 0;
+    direction = 'right';
+    gameOver = false;
+    foodCell = generateRandomCell();
+}
 
 // Function to generate a random position for the food
 function generateRandomCell() {
     return [
-        Math.round((Math.random()*(450))/cell)*cell,
-        Math.round((Math.random()*(1150))/cell)*cell
+        Math.round((Math.random()*(1150))/cell)*cell,
+        Math.round((Math.random()*(450))/cell)*cell
       ]
 }
 
@@ -105,8 +110,15 @@ function update() {
     }
 }
 
+// Function to start the game
+function startGame() {
+    clearInterval(id);  // Clear any previous intervals
+    initGame();  // Reset the game state
+    id = setInterval(() => {
+        draw();
+        update();
+    }, 200);
+}
 
-let id = setInterval(()=>{
-    draw();
-    update();
-},200);
+let start = document.querySelector('#start');
+start.addEventListener('click', ()=>startGame());
